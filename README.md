@@ -40,3 +40,7 @@ python scripts/run_experiment.py --config configs/experiment/zeroday_attack_hold
 - `datasets/splits.py` defines zero-day split strategy interfaces.
 - `models/quantum/feature_maps.py` exposes Hyper-Gaussian feature map parameters.
 - `models/quantum/kernels.py` separates single kernel and gram matrix APIs.
+
+##License
+- The copyright of this code belongs to @UCS LAB.
+
