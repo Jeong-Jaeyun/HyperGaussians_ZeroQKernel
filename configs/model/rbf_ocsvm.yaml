@@ -1,0 +1,6 @@
+﻿type: classical_rbf_ocsvm
+rbf:
+  gamma: 0.25
+ocsvm:
+  nu: 0.05
+  kernel: precomputed

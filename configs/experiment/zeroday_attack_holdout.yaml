@@ -1,0 +1,13 @@
+﻿name: zeroday_attack_holdout
+seed: 42
+split:
+  strategy: attack_family_holdout
+  holdout_families:
+    - DoS-Hulk
+    - Heartbleed
+training:
+  mode: one_class
+  normal_label: benign
+outputs:
+  save_figures: true
+  save_tables: true

@@ -1,0 +1,14 @@
+﻿name: zeroday_condition_holdout
+seed: 42
+split:
+  strategy: condition_holdout
+  condition_key: service
+  holdout_values:
+    - ssh
+    - dns
+training:
+  mode: one_class
+  normal_label: benign
+outputs:
+  save_figures: true
+  save_tables: false

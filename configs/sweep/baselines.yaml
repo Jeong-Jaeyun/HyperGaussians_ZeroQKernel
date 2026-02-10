@@ -1,0 +1,11 @@
+﻿name: baseline_sweep
+search:
+  type: grid
+  parameters:
+    model:
+      - configs/model/rbf_ocsvm.yaml
+      - configs/model/qkernel_hgauss.yaml
+    seed:
+      - 7
+      - 42
+      - 2026

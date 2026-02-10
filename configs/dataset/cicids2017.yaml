@@ -1,0 +1,13 @@
+﻿name: cicids2017
+source:
+  path: data/raw/cicids2017
+  format: csv
+
+preprocess:
+  normalize: zscore
+  window:
+    enabled: false
+    size: 64
+
+labels:
+  normal_label: benign
