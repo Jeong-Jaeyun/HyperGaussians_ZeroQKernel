@@ -1,13 +1,25 @@
-﻿name: cicids2017
+name: cicids2017
 source:
-  path: data/raw/cicids2017
+  path: data
   format: csv
+  pattern: "*.pcap_ISCX.csv"
+  recursive: false
+  label_column: Label
 
 preprocess:
   normalize: zscore
+  dtype: float32
+  clip_quantiles:
+    enabled: true
+    low: 0.001
+    high: 0.999
+  missing:
+    drop_if_missing_ratio_above: 0.98
+    impute: median
+  post_clip_abs: 6.0
   window:
     enabled: false
     size: 64
 
 labels:
-  normal_label: benign
+  normal_label: BENIGN
