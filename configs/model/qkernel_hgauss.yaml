@@ -1,4 +1,4 @@
-﻿type: quantum_kernel_hgauss
+type: quantum_kernel_hgauss
 n_qubits: 8
 depth: 6
 sigma: 0.7
@@ -6,5 +6,8 @@ order: 2
 phase_scale: 1.0
 entanglement_pattern: ring
 data_reupload: true
+use_analytic_proxy: true
 shots: 2048
 backend: aer
+ocsvm:
+  nu: 0.05

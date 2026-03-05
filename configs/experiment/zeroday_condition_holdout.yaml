@@ -1,14 +1,25 @@
-﻿name: zeroday_condition_holdout
+name: zeroday_condition_holdout
 seed: 42
+dataset:
+  config_path: configs/dataset/cicids2017.yaml
+  preprocessed_path: data/processed/cicids2017_preprocessed.npz
+model:
+  config_path: configs/model/rbf_ocsvm.yaml
 split:
   strategy: condition_holdout
   condition_key: service
   holdout_values:
     - ssh
     - dns
+  train_size: 2048
+  val_size: 1024
+  test_normal_size: 2048
+  test_anomaly_size: 2048
 training:
   mode: one_class
   normal_label: benign
+evaluation:
+  threshold_fpr: 0.01
 outputs:
   save_figures: true
   save_tables: false
