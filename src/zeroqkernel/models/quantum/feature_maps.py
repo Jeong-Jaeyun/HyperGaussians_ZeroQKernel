@@ -36,7 +36,7 @@ class EncodedHyperGaussianSample:
 
 
 class HyperGaussianFeatureMap:
-    """하이퍼 가우시안 영감 인코딩을 위한 장난감 피처 맵 생성기.
+    """하이퍼 가우시안 영감 인코딩을 위한 피처 맵 생성기.
 
     출력은 Qiskit 회로가 아니라, 나중에 백엔드별 실제 회로로 교체하기 쉬운
     간결한 인코딩 명세다.
@@ -104,9 +104,9 @@ class HyperGaussianFeatureMap:
     def build_rotation_layers(
         self, reduced_x: np.ndarray, envelope: np.ndarray
     ) -> np.ndarray:
-        """레이어별 장난감 회전 각도를 만든다.
+        """레이어별 회전 각도를 만든다.
 
-        장난감 코드에서 실제 피처 맵으로 전환할 때는 이 규칙을
+        코드에서 실제 피처 맵으로 전환할 때는 이 규칙을
         실제 게이트 파라미터 스케줄로 교체하면 된다.
         """
         base = np.pi * np.tanh(reduced_x * envelope)
@@ -119,7 +119,7 @@ class HyperGaussianFeatureMap:
     def build_phase_layers(
         self, reduced_x: np.ndarray, envelope: np.ndarray
     ) -> np.ndarray:
-        """레이어별 장난감 위상 각도를 만든다.
+        """레이어별 위상 각도를 만든다.
 
         이것도 의도적인 단순화다. 텐서 형태는 유지하고 규칙만 바꾸면 된다.
         """
@@ -133,7 +133,7 @@ class HyperGaussianFeatureMap:
         return layers
 
     def build_entangling_pairs(self) -> list[tuple[int, int]]:
-        """선택한 장난감 얽힘 토폴로지의 페어 목록을 반환한다."""
+        """선택한 얽힘 토폴로지의 페어 목록을 반환한다."""
         n_qubits = self.config.n_qubits
         pattern = self.config.entanglement_pattern
 
