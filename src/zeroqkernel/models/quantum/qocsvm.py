@@ -6,7 +6,7 @@ import numpy as np
 
 
 class QuantumOneClassModel:
-    """사전 계산 커널용 원클래스 SVM 장난감 래퍼."""
+    """사전 계산 커널용 원클래스 SVM 래퍼."""
 
     def __init__(self, nu: float = 0.05) -> None:
         self.nu = nu
