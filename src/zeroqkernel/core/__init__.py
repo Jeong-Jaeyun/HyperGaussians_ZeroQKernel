@@ -1,1 +1,1 @@
-﻿"""Core utilities and shared infrastructure."""
+﻿"""핵심 유틸리티와 공용 인프라."""

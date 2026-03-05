@@ -1,4 +1,4 @@
-"""Preprocessing pipeline for IDS features."""
+"""IDS 특성을 위한 전처리 파이프라인."""
 
 from __future__ import annotations
 
@@ -51,7 +51,7 @@ def _make_binary_labels(labels: np.ndarray, normal_label: str) -> np.ndarray:
 def preprocess_features(
     x: np.ndarray, config: dict[str, Any]
 ) -> tuple[np.ndarray, dict[str, Any]]:
-    """Apply normalization and post-clipping transformations."""
+    """정규화와 후처리 클리핑 변환을 적용한다."""
     normalize = str(config.get("normalize", "zscore")).lower()
     eps = float(config.get("eps", 1e-8))
     stats: dict[str, Any] = {"normalize": normalize}
@@ -89,7 +89,7 @@ def preprocess_features(
 def preprocess_dataset(
     raw_data: LoadedDataset, config: dict[str, Any]
 ) -> PreprocessedDataset:
-    """Convert raw dataset output into model-ready arrays."""
+    """원본 데이터셋 출력을 모델 입력용 배열로 변환한다."""
     pre_cfg = config.get("preprocess", {})
     labels_cfg = config.get("labels", {})
     missing_cfg = pre_cfg.get("missing", {})

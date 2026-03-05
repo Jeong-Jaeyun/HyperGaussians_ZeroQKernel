@@ -1,1 +1,1 @@
-﻿"""Evaluation metrics for detection and efficiency."""
+﻿"""탐지 성능과 효율성 평가 지표."""

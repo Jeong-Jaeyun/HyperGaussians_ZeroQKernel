@@ -1,1 +1,1 @@
-﻿"""Scoring and threshold calibration modules."""
+﻿"""점수화 및 임계값 보정 모듈."""

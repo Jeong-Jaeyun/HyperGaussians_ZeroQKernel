@@ -1,1 +1,1 @@
-﻿"""Model package for classical and quantum kernels."""
+﻿"""고전/양자 커널 모델 패키지."""

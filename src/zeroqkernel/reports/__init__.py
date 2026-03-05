@@ -1,1 +1,1 @@
-﻿"""Reporting package for plots/tables/export."""
+﻿"""플롯/테이블/내보내기용 리포팅 패키지."""

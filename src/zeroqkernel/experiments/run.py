@@ -1,4 +1,4 @@
-"""Single-run experiment entrypoint."""
+"""단일 실험 실행 진입점."""
 
 from __future__ import annotations
 

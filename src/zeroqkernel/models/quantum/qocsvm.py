@@ -1,4 +1,4 @@
-"""One-class anomaly model with precomputed quantum kernels."""
+"""사전 계산된 양자 커널을 사용하는 원클래스 이상 탐지 모델."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import numpy as np
 
 
 class QuantumOneClassModel:
-    """Toy wrapper over one-class SVM for precomputed quantum kernels."""
+    """사전 계산 커널용 원클래스 SVM 장난감 래퍼."""
 
     def __init__(self, nu: float = 0.05) -> None:
         self.nu = nu
@@ -29,7 +29,7 @@ class QuantumOneClassModel:
 
     def score_samples(self, k_eval):
         # k_eval은 QuantumKernel.gram(x_eval, x_train) 결과다.
-        # 반환값은 anomaly score로, 값이 클수록 이상으로 해석한다.
+        # 반환값은 이상 점수이며, 값이 클수록 더 이상으로 해석한다.
         if self._fallback_to_similarity:
             return 1.0 - np.asarray(k_eval).mean(axis=1)
 

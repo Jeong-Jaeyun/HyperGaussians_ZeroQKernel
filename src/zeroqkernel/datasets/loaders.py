@@ -1,4 +1,4 @@
-"""Dataset loading entry points."""
+"""데이터셋 로딩 진입점 모음."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ import pandas as pd
 
 @dataclass(slots=True)
 class LoadedDataset:
-    """Raw tabular dataset loaded from one or more source files."""
+    """하나 이상의 소스 파일에서 로드한 원본 테이블형 데이터셋."""
 
     features: pd.DataFrame
     labels: pd.Series
@@ -48,9 +48,9 @@ def _find_label_column(columns: list[str], configured_name: str) -> str:
 
 
 def load_dataset(config: dict[str, Any]) -> LoadedDataset:
-    """Load raw dataset and labels according to dataset config.
+    """데이터셋 설정에 따라 원본 데이터와 레이블을 로드한다.
 
-    Supports single-file CSV or directory-of-CSV layouts.
+    단일 CSV 파일 또는 CSV 디렉터리 레이아웃을 지원한다.
     """
     source = config.get("source", {})
     path = Path(source.get("path", ""))

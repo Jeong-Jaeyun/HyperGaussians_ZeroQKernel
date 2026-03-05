@@ -1,4 +1,4 @@
-"""Detection metric interfaces."""
+"""탐지 지표 인터페이스."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ class DetectionMetrics:
 
 
 def compute_detection_metrics(y_true, scores) -> DetectionMetrics:
-    """Compute AUROC, AUPRC, TPR@FPR=1%, and EER."""
+    """AUROC, AUPRC, TPR@FPR=1%, EER를 계산한다."""
     y_true = np.asarray(y_true, dtype=np.int8).reshape(-1)
     scores = np.asarray(scores, dtype=np.float64).reshape(-1)
 

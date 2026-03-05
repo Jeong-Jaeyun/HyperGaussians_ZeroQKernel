@@ -1,4 +1,4 @@
-"""One-class SVM baseline wrapper."""
+"""원클래스 SVM 베이스라인 래퍼."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import numpy as np
 
 
 class OCSVMBaseline:
-    """Wrapper for one-class SVM with a similarity-score fallback."""
+    """원클래스 SVM 래퍼. 필요 시 유사도 점수 기반 폴백을 사용한다."""
 
     def __init__(self, nu: float = 0.05) -> None:
         self.nu = nu
@@ -28,7 +28,7 @@ class OCSVMBaseline:
 
     def score_samples(self, k_eval):
         if self._fallback_to_similarity:
-            # Match the sklearn path: larger values mean more anomalous.
+            # 사이킷런 경로와 맞춘다: 값이 클수록 더 이상으로 본다.
             return 1.0 - np.asarray(k_eval).mean(axis=1)
 
         if self._model is None:

@@ -1,8 +1,8 @@
-﻿"""Evaluation/re-aggregation scaffold."""
-
-from __future__ import annotations
-
-
-def evaluate_run(run_dir: str):
-    _ = run_dir
-    raise NotImplementedError("Evaluation flow not implemented in scaffold")
+﻿"""평가/재집계 골격 코드."""
+
+from __future__ import annotations
+
+
+def evaluate_run(run_dir: str):
+    _ = run_dir
+    raise NotImplementedError("Evaluation flow not implemented in scaffold")

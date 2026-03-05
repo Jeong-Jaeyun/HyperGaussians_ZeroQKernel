@@ -1,1 +1,1 @@
-﻿"""Classical kernel-based baselines."""
+﻿"""고전 커널 기반 베이스라인."""

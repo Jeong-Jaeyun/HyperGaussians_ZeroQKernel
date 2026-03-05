@@ -1,11 +1,10 @@
-"""Toy hyper-gaussian quantum feature map scaffold.
+"""하이퍼 가우시안 기반 장난감 양자 피처 맵 골격 코드.
 
-This is intentionally lightweight. It exposes the important decisions you will
-eventually replace with a real circuit construction:
+의도적으로 가볍게 유지한 구현이며, 실제 회로 구성으로 대체할 핵심 결정 지점을 드러낸다.
 
-1. How to compress high-dimensional tabular features into ``n_qubits`` slots.
-2. How to turn those reduced features into hyper-gaussian amplitude weights.
-3. How to define per-layer rotation and phase schedules.
+1. 고차원 테이블 특성을 ``n_qubits`` 슬롯으로 압축하는 방법.
+2. 축소된 특성을 하이퍼 가우시안 진폭 가중치로 바꾸는 방법.
+3. 레이어별 회전/위상 스케줄을 정의하는 방법.
 """
 
 from __future__ import annotations
@@ -37,10 +36,10 @@ class EncodedHyperGaussianSample:
 
 
 class HyperGaussianFeatureMap:
-    """Toy feature-map builder for hyper-gaussian-inspired encodings.
+    """하이퍼 가우시안 영감 인코딩을 위한 장난감 피처 맵 생성기.
 
-    The output is not a Qiskit circuit. It is a compact encoding spec that is
-    easy to inspect and replace with a real backend-specific circuit later.
+    출력은 Qiskit 회로가 아니라, 나중에 백엔드별 실제 회로로 교체하기 쉬운
+    간결한 인코딩 명세다.
     """
 
     def __init__(self, config: HyperGaussianFeatureMapConfig) -> None:
@@ -68,10 +67,10 @@ class HyperGaussianFeatureMap:
         return vector
 
     def reduce_features(self, x) -> np.ndarray:
-        """Map an arbitrary-length feature vector down to ``n_qubits`` slots.
+        """임의 길이 특성 벡터를 ``n_qubits`` 슬롯으로 축소한다.
 
-        This uses deterministic chunk-mean pooling. It is simple on purpose,
-        and it is one of the first places you would replace for a better design.
+        결정적 청크 평균 풀링을 사용한다. 의도적으로 단순하게 만들었고,
+        더 나은 설계에서는 가장 먼저 교체할 수 있는 지점이다.
         """
         vector = self._to_1d_vector(x)
         n_qubits = self.config.n_qubits
@@ -96,7 +95,7 @@ class HyperGaussianFeatureMap:
         return reduced
 
     def hyper_gaussian_envelope(self, reduced_x: np.ndarray) -> np.ndarray:
-        """Compute a hyper-gaussian-style envelope over reduced features."""
+        """축소된 특성 위에서 하이퍼 가우시안 형태의 엔벌로프를 계산한다."""
         sigma = max(float(self.config.sigma), 1e-8)
         order = int(self.config.order)
         scaled = np.abs(reduced_x) / sigma
@@ -105,10 +104,10 @@ class HyperGaussianFeatureMap:
     def build_rotation_layers(
         self, reduced_x: np.ndarray, envelope: np.ndarray
     ) -> np.ndarray:
-        """Build per-layer toy rotation angles.
+        """레이어별 장난감 회전 각도를 만든다.
 
-        Replace this rule with your actual gate-parameter schedule when you move
-        from toy code to a real feature map.
+        장난감 코드에서 실제 피처 맵으로 전환할 때는 이 규칙을
+        실제 게이트 파라미터 스케줄로 교체하면 된다.
         """
         base = np.pi * np.tanh(reduced_x * envelope)
         layers = np.empty((self.config.depth, self.config.n_qubits), dtype=np.float64)
@@ -120,9 +119,9 @@ class HyperGaussianFeatureMap:
     def build_phase_layers(
         self, reduced_x: np.ndarray, envelope: np.ndarray
     ) -> np.ndarray:
-        """Build per-layer toy phase angles.
+        """레이어별 장난감 위상 각도를 만든다.
 
-        This is another deliberate simplification. Keep the shape, swap the rule.
+        이것도 의도적인 단순화다. 텐서 형태는 유지하고 규칙만 바꾸면 된다.
         """
         base = float(self.config.phase_scale) * reduced_x * envelope
         layers = np.empty((self.config.depth, self.config.n_qubits), dtype=np.float64)
@@ -134,7 +133,7 @@ class HyperGaussianFeatureMap:
         return layers
 
     def build_entangling_pairs(self) -> list[tuple[int, int]]:
-        """Return the pair list for the chosen toy entanglement topology."""
+        """선택한 장난감 얽힘 토폴로지의 페어 목록을 반환한다."""
         n_qubits = self.config.n_qubits
         pattern = self.config.entanglement_pattern
 
@@ -148,10 +147,10 @@ class HyperGaussianFeatureMap:
         return pairs
 
     def encode(self, x) -> EncodedHyperGaussianSample:
-        """Produce a backend-agnostic encoding spec for one sample."""
+        """샘플 하나에 대한 백엔드 독립 인코딩 명세를 생성한다."""
         # 연결 흐름:
-        # 원본 샘플 1개 -> 차원 축소 -> 하이퍼 가우시안 envelope ->
-        # rotation/phase 레이어 생성 -> entanglement 구조 결정 ->
+        # 원본 샘플 1개 -> 차원 축소 -> 하이퍼 가우시안 엔벌로프 ->
+        # 회전/위상 레이어 생성 -> 얽힘 구조 결정 ->
         # EncodedHyperGaussianSample 반환 -> QuantumKernel.kernel()에서 사용
         reduced_x = self.reduce_features(x)
         envelope = self.hyper_gaussian_envelope(reduced_x)
