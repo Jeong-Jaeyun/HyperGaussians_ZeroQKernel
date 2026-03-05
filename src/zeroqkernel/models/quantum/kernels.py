@@ -1,4 +1,4 @@
-"""하이퍼 가우시안 인코딩용 장난감 양자 커널 골격 코드.
+"""하이퍼 가우시안 인코딩용 양자 커널 골격 코드.
 
 기본 구현은 피처 맵 명세 위에 해석적 오버랩 프록시를 사용한다.
 이렇게 하면 코드를 작고 읽기 쉽게 유지하면서도 핵심 교체 지점을 명확히 드러낼 수 있다.
@@ -15,7 +15,7 @@ from .feature_maps import EncodedHyperGaussianSample, HyperGaussianFeatureMap
 
 
 class QuantumKernel:
-    """장난감 오버랩 프록시를 갖는 백엔드 독립 양자 커널 인터페이스."""
+    """오버랩 프록시를 갖는 백엔드 독립 양자 커널 인터페이스."""
 
     def __init__(
         self,
@@ -60,7 +60,7 @@ class QuantumKernel:
         encoded_x: EncodedHyperGaussianSample,
         encoded_x_prime: EncodedHyperGaussianSample,
     ) -> float:
-        """장난감 오버랩 추정값을 계산한다.
+        """오버랩 추정값을 계산한다.
 
         실제 양자 커널로 전환할 때 가장 먼저 교체할 핵심 지점이다.
         이 부분에 회로 백엔드, 샘플러, 상태벡터 오버랩 계산을 넣으면 된다.
